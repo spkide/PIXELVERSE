@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        *,
+        *::before,
+        *::after{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            font-family: "Press Start 2P", serif;
+            font-weight: 400;
+            font-style: normal;
+            background-color: black;
+            color: white;
+        }
+        .container{
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title{
+            font-size: 96px;
+        }
+
+        .content{
+            height: 100%;
+            display: grid;
+            place-items: center;
+            z-index: 5;
+            position: relative;
+        }
+
+        .fuzzy-overlay{
+            position: absolute;
+            inset: -200%;
+            background-image: url("noise.png");
+            opacity: 25%;
+            z-index: 5;
+            pointer-events: none;
+            animation: shift 0.2s  linear infinite both;
+        }
+
+        @keyframes shift{
+        0%{
+            transform: translateX(10%) translateY(10%);
+        }
+        100%{
+            transform: translateX(-10%) translateY(-10%);
+        }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container-1">
+                <nav>
+                    <h1>PIXELVERSE</h1>
+                    <ul>
+                        <li><a href="index.html" onclick="play8bitSound()">Inicio</a></li>
+                        <li><a href="noticias.html" onclick="play8bitSound()">Noticias</a></li>
+                        <li><a href="servidores.html" onclick="play8bitSound()">Servidores</a></li>
+                        <li><a href="construcciones.html" onclick="play8bitSound()">Construcciones</a></li>
+                        <li><a href="Comunidad.html" onclick="play8bitSound()">Comunidad</a></li>
+                        <li><a href="contactanos.html" onclick="play8bitSound()">Contáctanos</a></li>
+                    </ul>
+                </nav>
+        </div>
+    </header>
+    <footer>
+        <section class="icon-list">
+            <section class="icon-list">
+                <h3>🌐 Síguenos en nuestras redes</h3>
+                
+                <!-- Twitter -->
+                <a href="https://x.com/Sunshinexd041" target="_blank" class="icon-item twitter">
+                  <i class="nes-icon twitter is-large" style="border-radius: 50px;"></i>
+                </a>
+              
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/fcozzz1/" target="_blank" class="icon-item instagram">
+                  <i class="nes-icon instagram is-large" style="border-radius: 50px;"></i>
+                </a>
+              
+                <!-- GitHub -->
+                <a href="https://github.com/spkide" target="_blank" class="icon-item github">
+                  <i class="nes-icon github is-large" style="border-radius: 50px;"></i>
+                </a>
+              
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@sunshinexd1394" target="_blank" class="icon-item youtube">
+                  <i class="nes-icon youtube is-large" style="border-radius: 50px;"></i>
+                </a>
+              </section>
+      </footer>
+      <script src="js/filtros.js"></script>
+      <script src="js/script.js"></script>
+</body>
+</html>

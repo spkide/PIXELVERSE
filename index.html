@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- minify -->
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <!-- latest -->
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <!-- core style only -->
+    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="scss/style.scss">
+    <link rel="shortcut icon" href="img/12436.gif" type="image/x-icon">
+    <title>PIXELVERSE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        *,
+        *::before,
+        *::after{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            font-family: "Press Start 2P", serif;
+            font-weight: 400;
+            font-style: normal;
+            background-color: black;
+            color: white;
+        }
+        .container{
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title{
+            font-size: 96px;
+        }
+
+        .content{
+            height: 100%;
+            display: grid;
+            place-items: center;
+            z-index: 5;
+            position: relative;
+        }
+
+        .fuzzy-overlay{
+            position: absolute;
+            inset: -200%;
+            background-image: url("noise.png");
+            opacity: 25%;
+            z-index: 5;
+            pointer-events: none;
+            animation: shift 0.2s  linear infinite both;
+        }
+
+        .container-1 nav{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .container-1 ul{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 30px;
+            padding: 30px 20px;
+        }
+
+        .container-1 li{
+            list-style: none;
+        }
+
+        .container-1 a{
+            text-decoration: none;
+            color: white;
+            border: solid white;
+            border-radius: 50px;
+            padding: 10px;
+        }
+
+        .container-1 a:hover{
+            background-color: bisque;
+            transition: all 1 ease .3s;
+        }
+
+        .titulo-3 {
+         position: relative;
+        }
+
+        .video-presentacion {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* Asegura que el video ocupe toda la pantalla */
+        }
+
+        .video-1 {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Asegura que el video cubra completamente el área */
+        }
+
+        .titulo-3 h1 {
+            position: absolute;
+            top: 50%; /* Centra verticalmente el texto */
+            left: 50%; /* Centra horizontalmente el texto */
+            transform: translate(-50%, -50%); /* Ajuste para un centro perfecto */
+            color: white; /* Puedes cambiar el color según el diseño */
+            font-size: 3rem; /* Ajusta el tamaño del texto según necesites */
+            font-family: 'Press Start 2P', cursive; /* O cualquier fuente que prefieras */
+            text-align: center;
+        }
+
+        .info{
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            flex-direction:row;
+            padding: 50px 20px;
+            gap: 10vh;
+        }
+
+        .info h1{
+            display: flex;
+            align-items: center;
+            position: relative;
+            justify-content: center;
+        }
+
+        .info ul{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+        }
+
+        .gif-container {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        max-width: 600px;
+        }
+
+        .gif-animation {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            filter: brightness(0.85);
+        }
+
+        .overlay-text {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .info-section {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .info-section h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #FFB400;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+        }
+
+        .nes-btn {
+            margin: 5px;
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+
+        .gif-animation {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .meme-text {
+            font-size: 18px;
+            color: #FFB400;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .moraleja {
+            font-size: 16px;
+            color: #ffffff;
+            text-align: center;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .icon-list {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .icon-list h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .icon-item {
+            display: inline-block;
+            margin: 0 15px;
+            color: white;
+            font-size: 40px;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #444; /* Background color */
+            transition: background-color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .icon-item:hover {
+            background-color: #ff4757; /* Background color change on hover */
+            transform: scale(1.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adding shadow effect */
+        }
+
+        /* Icon specific colors */
+        .twitter:hover { background-color: #1DA1F2; }
+        .instagram:hover { background-color: #C13584; }
+        .github:hover { background-color: #333; }
+        .youtube:hover { background-color: #FF0000; }
+
+        @keyframes shift{
+            0%{
+                transform: translateX(10%) translateY(10%);
+            }
+            100%{
+                transform: translateX(-10%) translateY(-10%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--NO TOCAR-->
+    <div class="container">
+        <header>
+            <div class="container-1">
+                    <nav>
+                        <h1>PIXELVERSE</h1>
+                        <ul>
+                            <li><a href="index.html" onclick="play8bitSound()">Inicio</a></li>
+                            <li><a href="noticias.html" onclick="play8bitSound()">Noticias</a></li>
+                            <li><a href="servidores.html" onclick="play8bitSound()">Servidores</a></li>
+                            <li><a href="construcciones.html" onclick="play8bitSound()">Construcciones</a></li>
+                            <li><a href="Comunidad.html" onclick="play8bitSound()">Comunidad</a></li>
+                            <li><a href="contactanos.html" onclick="play8bitSound()">Contáctanos</a></li>
+                        </ul>
+                    </nav>
+            </div>
+        </header>
+        <section>
+            <div class="titulo-3">
+                <div class="video-presentacion">
+                  <!-- Contenedor del video con posición relativa para contener el texto -->
+                  <video src="video/Watch These VHS Tapes To Find Out Why A Cabin Eats People - Unsorted VHS.mp4" autoplay muted loop class="video-1"></video>
+                  
+                  <!-- Título encima del video -->
+                  <h1>BIENVENIDOS A PIXELVERSE</h1>
+                </div>
+              </div>              
+        </section>
+        <section class="nes-container is-dark with-title">
+            <h1 class="title">🎮 ¡BIENVENIDO A PIXELVERSE! 🌌</h1>
+            <p>Explora el universo del gaming: noticias, directos, novedades y más.</p>
+            
+            <div class="nes-container is-rounded">
+                <h2>🕹️ ¿Qué es Pixelverse?</h2>
+                <p>Pixelverse es tu portal definitivo sobre videojuegos. Aquí encontrarás:</p>
+                <ul class="nes-list is-circle">
+                    <li>📰 Noticias sobre lanzamientos y actualizaciones.</li>
+                    <li>🎥 Transmisiones en vivo de tus streamers favoritos.</li>
+                    <li>📚 Un catálogo con información de videojuegos clásicos y modernos.</li>
+                    <li>🔧 Guías, trucos y consejos para mejorar tu experiencia gamer.</li>
+                    <li>💬 Comunidad activa con debates, encuestas y más.</li>
+                </ul>
+            </div>
+        
+            <div class="nes-container is-rounded">
+                <h2>🔥 ¿Qué encontrarás aquí?</h2>
+                <p>Pixelverse no es solo una página, es una comunidad dedicada a los videojuegos en todas sus formas.</p>
+                <div class="lists">
+                    <ul class="nes-list is-disc">
+                        <li><i class="nes-icon heart is-small"></i> Videojuegos indie, triple A y retro.</li>
+                        <li><i class="nes-icon star is-small"></i> Cobertura de eventos y torneos.</li>
+                        <li><i class="nes-icon trophy is-small"></i> Rankings de juegos populares.</li>
+                        <li><i class="nes-icon like is-small"></i> Entrevistas con desarrolladores y creadores de contenido.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>        
+        <section id="info">
+            <div class="info">
+                <h1>INFORMACIÓN GENERAL DE PIXELVERSE</h1>
+                <p>Bienvenidos a Pixelverse, la Wiki definitiva sobre todos los videojuegos del mundo. Desde los juegos indie más emocionantes, hasta los títulos de terror más espeluznantes, aquí encontrarás todo lo que necesitas saber.</p>
+                <img src="img/2999.gif" alt="Pixelverse Wiki GIF">
+                <p>En Pixelverse, creemos que el conocimiento es poder. Esta Wiki está diseñada para que encuentres todo lo que necesitas, sin importar el tipo de jugador que seas. ¡Explora, aprende y comparte!</p>
+                <p>¿Estás listo para embarcarte en este viaje a través del vasto mundo de los videojuegos? ¡Tu aventura empieza aquí!</p>
+            </div>
+        </section>
+        <section class="nes-container is-dark">
+            <h2>🎮 Juegos Destacados 2025</h2>
+            <div class="nes-carousel">
+                <div class="nes-carousel-item">
+                    <p>The Elder Scrolls VI</p>
+                    <img src="img/2e5p49cavoc61.png" alt="The Elder Scrolls VI" style="width: 450px;" height="350px">
+                </div>
+                <div class="nes-carousel-item">
+                    <p>Starfield</p>
+                    <img src="img/starfield-heller.webp" alt="Starfield" style="width: 450px;" height="350px">
+                </div>
+                <div class="nes-carousel-item">
+                    <p>Final Fantasy VII Rebirth</p>
+                    <img src="img/final-fantasy-vii-3840x2160-13676.jpg" alt="Final Fantasy VII Rebirth" style="width: 450px;" height="350px">
+                </div>
+                <div class="nes-carousel-item">
+                    <p>Hogwarts: Legacy</p>
+                    <img src="img/hogwarts-legacy-dark-edition-official-pc-wallpaper-v0-potn7vwaxyj91.webp" alt="Hogwarts: Legacy" style="width: 450px;" height="350px">
+                </div>
+                <div class="nes-carousel-item">
+                    <p>The Witcher 4</p>
+                    <img src="img/zlvy48bu0l6e1.jpg" alt="The Witcher 4" style="width: 450px;" height="350px">
+                </div>
+                <div class="nes-carousel-item">
+                    <p>Horizon Forbidden West: Complete Edition</p>
+                    <img src="img/EGS_HorizonForbiddenWestCompleteEdition_GuerrillaGamesNixxesSoftware_S1_2560x1440-90cc343f3fcef2f750f13d8a2d84893b.jpeg" alt="Horizon Forbidden West: Complete Edition" style="width: 450px;" height="350px">
+                </div>
+                <div class="nes-carousel-item">
+                    <p>Halo Infinite</p>
+                    <img src="img/ess0891583l71.png" alt="Halo Infinite" style="width: 450px;" height="350px">
+                </div>
+                <div class="nes-carousel-item">
+                    <p>Hellblade II: Senua’s Saga</p>
+                    <img src="img/opengraph-image.png" alt="Hellblade II: Senua’s Saga" style="width: 450px;" height="350px">
+                </div>
+                <div class="nes-carousel-item">
+                    <p>Marvel’s Spider-Man 2</p>
+                    <img src="img/Spidey1Site_0qft9ju.webp" alt="Marvel’s Spider-Man 2" style="width: 450px;" height="350px">
+                </div>
+                <div class="nes-carousel-item">
+                    <p>Elden Ring: Expansión</p>
+                    <img src="img/2e5p49cavoc61.png" alt="Elden Ring: Expansión" style="width: 450px;" height="350px">
+                </div>
+            </div>        
+        </section>
+        <section>
+            <h2>📰 Noticias Recientes</h2>
+            <div class="nes-list is-circle">
+                <div class="nes-list-item">
+                    <a href="#" style="color: white; text-decoration: none;">
+                        <div class="news-item">
+                            <img src="img/Silksong_Promo_02small.jpg" alt="Hollow Knight: Silksong" class="news-image" style="width: 450px;" height="350px">
+                            <div class="news-content">
+                                <h3>Nuevo juego indie "Hollow Knight: Silksong" anunciado para 2025.</h3>
+                                <p>La secuela esperada de "Hollow Knight", un metroidvania impresionante que te llevará a nuevos reinos. Prepárate para explorar un mundo vasto y desafiante en "Silksong". ¡No te lo pierdas!</p>
+                                <!-- Botón para ver el video -->
+                                <a href="https://youtu.be/JSfuFlhsxZY?si=f45Y1sR6hmtCSziP" class="nes-btn is-primary" target="_blank">Ver Video</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            
+                <div class="nes-list-item">
+                    <a href="#" style="color: white; text-decoration: none;">
+                        <div class="news-item">
+                            <img src="img/1366_2000.jpeg" alt="Minecraft Update" class="news-image" style="width: 450px;" height="350px">
+                            <div class="news-content">
+                                <h3>Actualización importante de Minecraft: Más biomas y criaturas.</h3>
+                                <p>Explora nuevos biomas y criaturas en la última actualización de Minecraft. ¡Es hora de expandir tu mundo!</p>
+                                <!-- Botón para ver el video -->
+                                <a href="https://youtu.be/CXa4W87Uk_c?si=YCDcdLid7mj3zYIm" class="nes-btn is-primary" target="_blank">Ver Video</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            
+                <div class="nes-list-item">
+                    <a href="#" style="color: white; text-decoration: none;">
+                        <div class="news-item">
+                            <img src="img/1343565.png" alt="GTA VI Rumor" class="news-image" style="width: 450px;" height="350px">
+                            <div class="news-content">
+                                <h3>GTA VI podría anunciar su fecha de lanzamiento en este mes.</h3>
+                                <p>Grand Theft Auto VI podría tener su fecha de lanzamiento revelada este mes. ¡Sigue las novedades para no perderte nada!</p>
+                                <!-- Botón para ver el video -->
+                                <a href="https://youtu.be/ETXmT840YhM?si=NRfFRexQD3U_SzrW" class="nes-btn is-primary" target="_blank">Ver Video</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>            
+        </section>
+        <section class="nes-container is-dark">
+            <h2>⭐ Reseñas de Jugadores</h2>
+            <div class="nes-list is-circle">
+                <li>
+                    <img src="img/thumb-1920-1273616.jpg" alt="" style="width: 450px;" height="350px">
+                    <strong>Hollow Knight: Silksong</strong> - 9/10
+                    <div class="nes-icon is-large star"></div>
+                    <div class="nes-icon is-large star"></div>
+                    <div class="nes-icon is-large star"></div>
+                    <div class="nes-icon is-large star is-half"></div>
+                    <div class="nes-icon is-large star is-transparent"></div>
+                    <p>"Un juego desafiante y con hermosos gráficos."</p>
+                </li>
+                <li>
+                    <img src="img/Minecraft-PS4-Wallpapers-16.jpg" alt="" style="width: 450px;" height="350px">
+                    <strong>Minecraft</strong> - 10/10
+                    <div class="nes-icon is-large star"></div>
+                    <div class="nes-icon is-large star"></div>
+                    <div class="nes-icon is-large star"></div>
+                    <div class="nes-icon is-large star"></div>
+                    <div class="nes-icon is-large star"></div>
+                    <p>"La mejor actualización del juego hasta ahora."</p>
+                </li>
+            </div>
+        </section>           
+        <section id="sabermas">
+            <h4 class="title">🔍 Saber Más sobre Pixelverse</h4>
+            <p>Pixelverse es un lugar donde la comunidad gamer se reúne para explorar, aprender y compartir experiencias sobre los videojuegos. A lo largo de esta plataforma, puedes encontrar desde reseñas de los juegos más esperados hasta eventos en vivo de tus creadores de contenido favoritos. Aquí, en Pixelverse, la pasión por los videojuegos es lo que nos une, y queremos que tú también seas parte de esta gran comunidad.</p>
+            
+            <div class="nes-container is-rounded">
+                <h3>🎮 ¿Qué más ofrece Pixelverse?</h3>
+                <ul class="nes-list is-circle">
+                    <li>🔴 **Noticias frescas** sobre el mundo de los videojuegos.</li>
+                    <li>📅 **Eventos y torneos en vivo** para que puedas competir o disfrutar del gaming con otros.</li>
+                    <li>👾 **Comunidad activa** para intercambiar opiniones, trucos y novedades.</li>
+                    <li>📚 **Contenido exclusivo** sobre las mejores franquicias y nuevas tendencias del gaming.</li>
+                </ul>
+            </div>
+        </section>
+        <section class="nes-container is-dark">
+            <h2>✨ ¡Descubre el Mundo de Pixelverse! ✨</h2>
+            <p>Pixelverse es un universo digital fascinante lleno de historia, personajes y eventos que te transportarán a un mundo de creatividad y aventuras. Aquí podrás conocer más sobre este impresionante universo que ha cautivado a jugadores y fanáticos alrededor del mundo.</p>
+            
+            <!-- GIF de Pixelverse -->
+            <div class="gif-container">
+                <img src="img/tumblr_mkucb0d34z1r67h3uo1_500.gif" alt="Animación de Pixelverse" class="gif-animation">
+            </div>
+            
+            <!-- Descripción adicional -->
+            <div class="info-section">
+                <h3>¿Qué es Pixelverse?</h3>
+                <p>Pixelverse no es solo un juego; es un mundo virtual en expansión. Desde su creación, ha servido como un punto de encuentro para fans de la cultura gamer, donde se fusionan elementos retro y modernos. Aquí, podrás explorar historias, conocer a los personajes y descubrir los secretos del universo Pixelverse.</p>
+                <p>La wiki de Pixelverse es tu fuente definitiva para explorar todos los aspectos de este mundo: personajes, historia, eventos especiales, guías y mucho más. ¡Explora y forma parte de esta increíble comunidad!</p>
+        
+                <!-- Enlaces para explorar -->
+                <div class="action-buttons">
+                    <a href="#historia" class="nes-btn is-primary">Explora la Historia de Pixelverse</a>
+                    <a href="#personajes" class="nes-btn is-success">Conoce a los Personajes</a>
+                    <a href="#eventos" class="nes-btn is-warning">Eventos Especiales</a>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>✨ Kirby en Acción! ✨</h2>
+            <p>Kirby, el adorable héroe que no tiene miedo de comerse todo lo que se le cruce. Pero, a veces, aprender a "absorber" lo bueno de la vida y dejar lo malo, es la verdadera clave. ¡Con su espíritu alegre, Kirby nos enseña que todo es más fácil cuando lo tomamos con una sonrisa!</p>
+            
+            <img src="img/kirby mazo.gif" alt="Kirby en acción" class="gif-animation">
+            
+            <p class="meme-text">"Si Kirby puede absorber todo lo que se le ponga enfrente, ¿por qué no tomar la vida con más ánimo?"</p>
+            
+            <p class="moraleja">Moraleja: No importa cuán difícil sea el reto, si lo enfrentas con una actitud positiva, todo será más fácil. ¡Y si te caes, siempre puedes levantarte... o comer algo y seguir adelante! 🍉</p>
+        </section>
+        <section>
+            <div class="nes-container is-rounded is-dark" style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+              <div>
+                <h3>Hey! Ya Navegaste Mucho Aventurero O Aventurera, Tomate Un Descanso Aqui...</h3>
+                <img src="img/15792.gif" alt="Gif de música" style="width: 50%; height: 100%;">
+              </div>
+              <div style="flex-grow: 1;">
+                <iframe src="https://open.spotify.com/embed/playlist/2ySS5PwviQUcrhk5A8ZWCh?si=af5f43483012454c" 
+                        frameborder="0" 
+                        id="spotify-player" 
+                        allowtransparency="true" 
+                        allow="encrypted-media" 
+                        style="width: 100%; height: 380px; border: none;">
+                </iframe>
+              </div>
+            </div>
+          </section>
+          <footer>
+            <section class="icon-list">
+                <h3>🌐 Síguenos en nuestras redes</h3>
+                
+                <!-- Twitter -->
+                <a href="https://x.com/Sunshinexd041" target="_blank" class="icon-item twitter">
+                  <i class="nes-icon twitter is-large" style="border-radius: 50px;"></i>
+                </a>
+              
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/fcozzz1/" target="_blank" class="icon-item instagram">
+                  <i class="nes-icon instagram is-large" style="border-radius: 50px;"></i>
+                </a>
+              
+                <!-- GitHub -->
+                <a href="https://github.com/spkide" target="_blank" class="icon-item github">
+                  <i class="nes-icon github is-large" style="border-radius: 50px;"></i>
+                </a>
+              
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@sunshinexd1394" target="_blank" class="icon-item youtube">
+                  <i class="nes-icon youtube is-large" style="border-radius: 50px;"></i>
+                </a>
+              </section>
+          </footer>
+        <div class="content">
+            <h2 class="title"></h2>
+        </div>
+        <div class="fuzzy-overlay"></div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
